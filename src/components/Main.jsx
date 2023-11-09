@@ -17,7 +17,7 @@ function Main(){
 
     let message = "";
     if(moviesToDisplay.length){
-        message = <h1>List of movies</h1>
+        message = <h1>Number of movies: {moviesToDisplay.length}</h1>
     } else {
         message = <h1>Sorry, no movies to display</h1>
     }
