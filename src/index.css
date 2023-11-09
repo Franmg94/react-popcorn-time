@@ -55,3 +55,9 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.box, .card {
+  border: 1px solid #fff;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+

@@ -9,20 +9,82 @@ function App() {
 
   const [moviesToDisplay, setMoviesToDisplay] = useState(movies);
 
-  const deleteMovie = (movieId) => {
-    const newList = moviesToDisplay.filter((movieDetails) => {
-      return movieDetails.id !== movieId;
-    });
+  const [title, setTitle] = useState("");
+  const [rating, setRating] = useState("");
 
-    // moviesToDisplay = newList; // NEVER UPDATE STATE DIRECTLY !!
-    // moviesToDisplay.pop(); // NEVER UPDATE STATE DIRECTLY !!
+
+  const deleteMovie = (movieTitle) => {
+    const newList = moviesToDisplay.filter((movieDetails) => {
+      return movieDetails.title !== movieTitle;
+    });
     setMoviesToDisplay(newList);
+  }
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    // create an object with the details of the new movie to add
+    const newMovie = {
+      title: title,
+      rating: rating
+    }
+
+    // update the list of movies
+    const newList = [newMovie, ...moviesToDisplay];
+    setMoviesToDisplay(newList);
+
+    // clear the form
+    setTitle("");
+    setRating("");
+
   }
 
 
   return (
     <>
       <Header numberOfMovies={moviesToDisplay.length} />
+
+
+      <section className='box'>
+
+        <form onSubmit={handleSubmit}>
+          
+
+          <label>
+            Title: 
+            <input 
+              type="text" 
+              name="title" 
+              placeholder="enter the title" 
+              required={true}
+              value={title} 
+              onChange={(e) => { setTitle(e.target.value) }} 
+              />
+          </label>
+
+
+          <label>
+            Rating:
+            <input 
+              type="number" 
+              name="rating" 
+              required={true}
+              min={1}
+              max={10}
+              value={rating} 
+              onChange={(e) => { setRating(e.target.value) }} 
+              />
+          </label>
+
+          <button>Create movie</button>
+        </form>
+
+      </section>
+
+
+
+
       <Main moviesArr={moviesToDisplay} callbackToDelete={deleteMovie}  />
       <Footer />
     </>
