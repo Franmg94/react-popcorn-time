@@ -1,5 +1,6 @@
 import { useState } from "react";
 import movies from "../data/movies.json";
+import Movie from "./Movie";
 
 function Main(){
 
@@ -27,25 +28,15 @@ function Main(){
 
             {message}
 
-            {moviesToDisplay.map(function(movieObj, index){
-                return(
-                    <div key={movieObj.id}>
-
-                        {movieObj.imgURL 
-                            ? <img src={movieObj.imgURL}  /> 
-                            : <img src="https://dummyimage.com/182x268/ffffff/000000" />
-                        }
-
-                        <h2>{movieObj.title}</h2>
-                        <p>Rating: {movieObj.rating}</p>
-
-                        { movieObj.rating > 8 && <p>RECOMMENDED</p>}
-                        
-
-                        <button onClick={function(){ deleteMovie(movieObj.id) }}>Delete</button>
-                        
-                    </div>
-                );
+            {moviesToDisplay.map(function(movieObj){
+                return (
+                    <Movie 
+                        key={movieObj.id}
+                        movieDetails={movieObj}
+                        title="hello"
+                        callbackToDelete={deleteMovie}
+                        />
+                )
             })}
 
         </>
