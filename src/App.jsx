@@ -7,6 +7,7 @@ import Header from './components/Header'
 import MovieList from './components/MovieList'
 import AddMovie from './components/AddMovie';
 import About from './components/About';
+import MovieDetails from './components/MovieDetails';
 
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
 
       <Routes>
         <Route path='/' element={<MovieList moviesArr={moviesToDisplay} callbackToDelete={deleteMovie} />} />
+        <Route path='/movies/:movieId' element={<MovieDetails moviesArr={moviesToDisplay} />}  />
         <Route path='/about' element={<About />} />
       </Routes>
 
